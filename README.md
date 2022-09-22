@@ -65,6 +65,7 @@
 6. 如服务器内存过小则修改startup.sh中内存
 7. 配置nginx反向代理作为负载均衡
 ![img.png](images/img.png)
+
 还可以用docker搭建集群,更加简单,抽空试一下
 
 ----
