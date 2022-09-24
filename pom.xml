@@ -11,6 +11,7 @@
         <module>stock</module>
         <module>order-nacos</module>
         <module>stock-nacos</module>
+        <module>order-ribbon</module>
     </modules>
     <name>spring-cloud-alibaba</name>
     <description>spring-cloud-alibaba</description>
