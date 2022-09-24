@@ -1,14 +1,13 @@
-package com.cyy.order;
+package net.mddn.order;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-public class OrderApplication {
+public class OrderApplicaiton {
+
     public static void main(String[] args) {
-        SpringApplication.run(OrderApplication.class);
+        SpringApplication.run(OrderApplicaiton.class);
         System.out.println("运行完成");
     }
 }

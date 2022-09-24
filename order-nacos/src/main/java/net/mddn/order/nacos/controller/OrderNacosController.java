@@ -1,5 +1,4 @@
-package com.cyy.order.controller;
-
+package net.mddn.order.nacos.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +16,7 @@ public class OrderNacosController {
     @GetMapping("/add")
     public String add(){
         System.out.println("添加订单");
-        String msg = restTemplate.getForObject("http://stock-server/stock/nacos/reduce",String.class);
+        String msg = restTemplate.getForObject("http://stock-nacos-server/stock/nacos/reduce",String.class);
         return "添加订单" + msg;
     }
 

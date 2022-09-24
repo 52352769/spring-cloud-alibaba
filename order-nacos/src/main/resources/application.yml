@@ -2,16 +2,16 @@ server:
   port: 8020
 spring:
   application:
-#    应用名称 （nacos会将该名称当做服务名称）
-    name: order-server
+    #    应用名称 （nacos会将该名称当做服务名称）
+    name: order-nacos-server
   cloud:
     nacos:
       server-addr: 114.115.161.43:8847
-#      server-addr: 127.0.0.1:8848
+      #      server-addr: 127.0.0.1:8848
       discovery:
         username: nacos
         password: nacos
-#        命名空间 可以设置为public prod生产环境 dev开发环境
+        #        命名空间 可以设置为public prod生产环境 dev开发环境
         namespace: public
 
 #        永久实例 宕机也不会删除实例  默认true:临时实例 当服务宕机 超过心跳 就会将实例释放删除
