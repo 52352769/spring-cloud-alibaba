@@ -92,10 +92,14 @@
    + IRule 所有负载均衡策略的父接口
    + AbstractLoadBalancerRule 抽象类,里面定义了一个ILoadBalancer,就是负载均衡器
    + RandomRule 随机选择服务器实例
-   + RoundRobinRule 轮询
+   + RoundRobinRule 轮询 
    + RetryRule  轮询基础上进行重试
    + WeightedResponseTimeRule 权重,会根据每一个实例的运行情况来计算该实例的权重,然后挑选实例的时候根据权重进行挑选,根据平均相应时间来计算权重,响应时间越短,服务实例权重越大
    + ClientConfigEnabledRoundRobinRule 和RoundRobinRule轮询策略一致
    + BestAvailableRule 过滤失效的服务实例,顺便找出并发请求最小的服务实例来调用
    + ZoneAvoidanceRule 默认规则 符合判断server所在区域的性能和server的可用性选择服务器
    + NacosRule nacos扩展了一个基于配置的权重扩容
+6. 修改默认负载均衡策略
+   + 配置类方式修改
+     + 
+   + 配置文件方式修改
