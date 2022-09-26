@@ -1,5 +1,5 @@
 server:
-  port: 8020
+  port: 8030
 spring:
   application:
     #    应用名称 （nacos会将该名称当做服务名称）
@@ -24,3 +24,6 @@ spring:
 #        service: stock-server
 #         元数据 可以结合元数据做扩展
 #        metadata: version=1
+stock-nacos-server:
+  ribbon:
+    NFLoadBalancerRuleClassName: net.mddn.order.config.CustomRule

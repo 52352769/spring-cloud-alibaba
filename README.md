@@ -101,5 +101,20 @@
    + NacosRule nacos扩展了一个基于配置的权重扩容
 6. 修改默认负载均衡策略
    + 配置类方式修改
-     + 
+     + 不能放到application启动类的包下,没有设置扫描包的情况下@CompoentScan默认扫描的包是启动类的当前目录下,如果放到当前目录下能被扫描到,将会被所有的服务提供方共享
+     + 自定义配置类-方法名一定要叫iRule
+       + ![img.png](images/负载均衡-配置类.png)
+     + 启动类添加注解 @RibbonClients
+       + ![img.png](images/负载均衡-启动类.png)
+     + @LoadBalanced 负载均衡器
+       + ![img.png](images/负载均衡-负载均衡器.png)
    + 配置文件方式修改
+     + 配置文件中添加要使用负载均衡的服务名称--那个服务里需要就在哪个服务里配置不需要在服务所在配置文件中进行配置
+     + ![img.png](images/负载均衡-配置类方式.png)
+7. 自定义负载均衡策略
+    + 继承 AbstractLoadBalancerRule类
+    + 实现方法、choose中返回一个服务对象
+    + ![img.png](images/负载均衡-自定义负载均衡.png)
+    + initWithNiwsConfig()方法初始化配置
+    + 配置文件添加类完整路径 或者添加配置类 参考6.1 配置类方式修改
+    + ![img.png](images/负载均衡-自定义负载均衡-配置类方式.png)

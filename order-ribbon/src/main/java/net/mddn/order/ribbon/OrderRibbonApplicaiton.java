@@ -1,13 +1,20 @@
 package net.mddn.order.ribbon;
 
+import net.mddn.order.config.RandomRuleConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.netflix.ribbon.RibbonClient;
+import org.springframework.cloud.netflix.ribbon.RibbonClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
+//指定ribbon负载均衡策略--自定义配置类方式
+//@RibbonClients(value = {
+//    @RibbonClient(name = "stock-nacos-server",configuration = RandomRuleConfig.class)
+//})
 public class OrderRibbonApplicaiton {
 
     public static void main(String[] args) {
