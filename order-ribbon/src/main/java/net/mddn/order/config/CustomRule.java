@@ -19,6 +19,7 @@ public class CustomRule extends AbstractLoadBalancerRule {
     //
     @Override
     public Server choose(Object o) {
+        System.out.println("自定义负载均衡");
         //获得当前请求的服务的实例
         ILoadBalancer loadBalancer = this.getLoadBalancer();
         List<Server> reachableServers = loadBalancer.getReachableServers();

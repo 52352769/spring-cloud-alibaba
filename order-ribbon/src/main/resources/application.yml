@@ -24,6 +24,17 @@ spring:
 #        service: stock-server
 #         元数据 可以结合元数据做扩展
 #        metadata: version=1
+
+
+# 自定义负载均衡器
 stock-nacos-server:
   ribbon:
     NFLoadBalancerRuleClassName: net.mddn.order.config.CustomRule
+
+
+ribbon:
+  # ribbon 饥饿加载
+  eager-load:
+    enabled: true
+#    配置需要饥饿加载的服务 多个使用逗号分隔
+    clients: stock-nacos-server

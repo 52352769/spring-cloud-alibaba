@@ -109,7 +109,7 @@
      + @LoadBalanced 负载均衡器
        + ![img.png](images/负载均衡-负载均衡器.png)
    + 配置文件方式修改
-     + 配置文件中添加要使用负载均衡的服务名称--那个服务里需要就在哪个服务里配置不需要在服务所在配置文件中进行配置
+     + 配置文件中添加要使用负载均衡的服务名称--消费端进行配置
      + ![img.png](images/负载均衡-配置类方式.png)
 7. 自定义负载均衡策略
     + 继承 AbstractLoadBalancerRule类
@@ -118,3 +118,34 @@
     + initWithNiwsConfig()方法初始化配置
     + 配置文件添加类完整路径 或者添加配置类 参考6.1 配置类方式修改
     + ![img.png](images/负载均衡-自定义负载均衡-配置类方式.png)
+    + 测试时自定义负载均衡处添加打印一句话即可
+    + 负载均衡懒加载-是在第一次调用时才会动态加载并实例化-导致第一次调用会比较慢
+    + 启动时加载--开启ribbon饥饿加载${ribbon.eager-load.enabled}设置为true ${ribbon.eager-load.clients} 饥饿加载的服务,多个服务用逗号分隔
+    + ![img.png](images/负载均衡-饥饿加载.png)
+8. Loadbalancer
+   + Soring官方提供了两种负载均衡客户端
+     + RestTemplate 专门调用rest接口
+     + WebClient 调用webFlux
+   + SrpingBootWeb提供了RestTemplate支持
+   + Loadbalancer依赖SpringCloud
+   + 排除SpringCloudAlibabaNacos依赖中的ribbon
+   + ![img.png](images/loadbalancer-排除nacos中ribbon依赖.png)
+   + 添加loadbalancer依赖
+   + ![img.png](images/loadbalancer依赖.png)
+
+----
+
+## OpenFeign 模板化HTTP客户端
+####spring-cloud-alibaba整合OpenFeign
+   1. 添加OpenFeign依赖  依赖spring-cloud
+      + ![img.png](images/OpenFeign依赖.png)
+   2. 添加openFeign接口 跟生产端接口名称对应
+      + @FeignClient注解
+        + name 指定服务提供方服务名
+        + path 指定controller的请求路径
+      + 服务提供方的方法用什么注解这边就用相同的注解保持一直,参数和参数注解也保持一致
+      + ![img.png](images/OpenFeign-配置类.png)
+      + 启动类添加 @EnableFeignClients注解
+      + ![img.png](images/OpenFeign-启动类注解.png)
+      + 调用
+      + ![img.png](images/OpenFeign-调用.png)
