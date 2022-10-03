@@ -1,0 +1,15 @@
+server:
+  port: 8060
+spring:
+  application:
+    #    应用名称 （nacos会将该名称当做服务名称）
+    name: product-nacos-server
+  cloud:
+    nacos:
+      server-addr: 114.115.161.43:8847
+      #      server-addr: 127.0.0.1:8848
+      discovery:
+        username: nacos
+        password: nacos
+        #        命名空间 可以设置为public prod生产环境 dev开发环境
+        namespace: public

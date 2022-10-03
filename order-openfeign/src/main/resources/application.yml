@@ -13,3 +13,15 @@ spring:
         password: nacos
         #        命名空间 可以设置为public prod生产环境 dev开发环境
         namespace: public
+
+#springboot默认日志级别是info feign的debug日志级别不会输出
+logging:
+  level:
+    net.mddn.order.openfeign.feign: debug   # 只配置feign目录下的日志级别 无包地址则是全局
+
+#feign 日志局部配置
+feign:
+  client:
+    config:
+      product-nacos-server:  #配置服务名
+        loggerLevel: BASIC

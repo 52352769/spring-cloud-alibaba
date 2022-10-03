@@ -137,15 +137,36 @@
 
 ## OpenFeign 模板化HTTP客户端
 ####spring-cloud-alibaba整合OpenFeign
-   1. 添加OpenFeign依赖  依赖spring-cloud
-      + ![img.png](images/OpenFeign依赖.png)
-   2. 添加openFeign接口 跟生产端接口名称对应
-      + @FeignClient注解
-        + name 指定服务提供方服务名
-        + path 指定controller的请求路径
-      + 服务提供方的方法用什么注解这边就用相同的注解保持一直,参数和参数注解也保持一致
-      + ![img.png](images/OpenFeign-配置类.png)
-      + 启动类添加 @EnableFeignClients注解
-      + ![img.png](images/OpenFeign-启动类注解.png)
-      + 调用
-      + ![img.png](images/OpenFeign-调用.png)
+1. 添加OpenFeign依赖  依赖spring-cloud
+   + ![img.png](images/OpenFeign依赖.png)
+2. 添加openFeign接口 跟生产端接口名称对应
+   + @FeignClient注解
+     + name 指定服务提供方服务名
+     + path 指定controller的请求路径
+   + 服务提供方的方法用什么注解这边就用相同的注解保持一直,参数和参数注解也保持一致
+   + ![img.png](images/OpenFeign-配置类.png)
+   + 启动类添加 @EnableFeignClients注解
+   + ![img.png](images/OpenFeign-启动类注解.png)
+   + 调用
+   + ![img.png](images/OpenFeign-调用.png)
+3. Spring-Cloud-Feign自定义配置及使用
+     + 类型 
+       + NONE: 性能最佳,适用于生产环境,不记录任何日志-默认值,
+       + BASIC: 适用于生产环境追踪问题,仅记录请求方法、url、响应状态代码及执行时间,
+       + HEADERS: 疾苦basic级别的基础上,记录请求和响应的header,
+       + FULL: 比较适用开发及测试环境定位问题,记录请求和响应的header、body和元数据
+     + feign 日志配置
+       + ![img.png](images/feign日志级别.png)
+     + 局部配置 - 配置类方式
+       + 添加配置类
+         + ![img.png](images/feign自定义配置类-日志类配置文件.png)
+       + @FeignClient内添加 configuration = 类名.class
+         + ![img.png](images/feign自定义配置-日志类配置局部配置注解.png)
+     + 全局配置
+       + 添加配置类 使用@Configuration
+         + ![img.png](images/feign自定义配置类-全局配置类.png)
+         + ![img.png](images/feign自定义配置类-全局配置service.png) 
+           + PathVariable 需要指定（value） 否则启动报错
+           + java.lang.IllegalStateException: PathVariable annotation was empty on param 0.
+     + 局部配置-YML配置
+       + ![img.png](images/feign局部YML配置.png)

@@ -1,5 +1,6 @@
 package net.mddn.order.openfeign.controller;
 
+import net.mddn.order.openfeign.feign.ProductFeignService;
 import net.mddn.order.openfeign.feign.StockNacosFeignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,11 +15,15 @@ public class OrderController {
     @Autowired
     private StockNacosFeignService stockService;
 
+    @Autowired
+    private ProductFeignService productService;
+
 
     @GetMapping("/add")
     public String add(){
         System.out.println("添加订单");
         String reduce = stockService.reduce();
-        return "添加订单" + reduce;
+        String product = productService.get(1);
+        return "添加订单" + reduce + product;
     }
 }
