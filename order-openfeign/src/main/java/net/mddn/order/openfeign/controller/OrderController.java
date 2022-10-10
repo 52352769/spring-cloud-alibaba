@@ -20,7 +20,7 @@ public class OrderController {
 
 
     @GetMapping("/add")
-    public String add(){
+    public String add() {
         System.out.println("添加订单");
         String reduce = stockService.reduce();
         String product = productService.get(1);

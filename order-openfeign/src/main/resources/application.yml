@@ -25,3 +25,10 @@ feign:
     config:
       product-nacos-server:  #配置服务名
         loggerLevel: BASIC
+        contract: feign.Contract.Default  #设置默认的契约-还原成原生注解
+        #连接超时时间 默认2秒
+        connectTimeout: 3000
+        #请求处理超时时间 默认5秒
+        readTimeout: 10000
+        requestInterceptors[0]:
+          net.mddn.order.openfeign.intercptor.feign.CustomFeignIntercepror

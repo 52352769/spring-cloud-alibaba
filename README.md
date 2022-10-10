@@ -63,7 +63,7 @@
    + 取消mysql注释
 5. 修改cluster.conf文件中集群地址
 6. 如服务器内存过小则修改startup.sh中内存
-7. 配置nginx反向代理作为负载均衡
+7. 配置nginx反向代理作为负载均衡 
 ![img.png](images/img.png)
 
 还可以用docker搭建集群,更加简单,抽空试一下
@@ -155,10 +155,10 @@
        + BASIC: 适用于生产环境追踪问题,仅记录请求方法、url、响应状态代码及执行时间,
        + HEADERS: 疾苦basic级别的基础上,记录请求和响应的header,
        + FULL: 比较适用开发及测试环境定位问题,记录请求和响应的header、body和元数据
-     + feign 日志配置
+     + feign 日志配置 ${logging.lever.包名}
        + ![img.png](images/feign日志级别.png)
      + 局部配置 - 配置类方式
-       + 添加配置类
+       + 添加配置类 
          + ![img.png](images/feign自定义配置类-日志类配置文件.png)
        + @FeignClient内添加 configuration = 类名.class
          + ![img.png](images/feign自定义配置-日志类配置局部配置注解.png)
@@ -168,5 +168,29 @@
          + ![img.png](images/feign自定义配置类-全局配置service.png) 
            + PathVariable 需要指定（value） 否则启动报错
            + java.lang.IllegalStateException: PathVariable annotation was empty on param 0.
-     + 局部配置-YML配置
+     + 局部配置-YML配置 ${feign.client.config.服务名.loggerLevel}
        + ![img.png](images/feign局部YML配置.png)
+
+4. 契约配置 - 还原成原生注解
+  + 配置文件添加 
+    + ${feign.client.config.服务名.contract}
+    + ![img.png](images/feign-契约配置-yml配置.png)
+    + ![img_1.png](images/feign-契约配置-原生注解.png)
+5. 超时时间配置
+   + 连接超时时间 默认2秒
+     + ${feign.client.config.服务名.connectTimeout}
+   + 请求处理超时时间 默认5秒
+     + ${feign.client.config.服务名.readTimeout}
+   + ![img.png](images/feign-超时时间配置.png)
+
+6. 自定义拦截器
+   + 实现 RequestInterceptor接口
+   + 重写 apply方法
+     + ![img.png](images/feign-自定义拦截器.png)
+   + 配置文件添加  ${feign.client.config.服务名.requestInterceptors[0]} requestInterceptors为数组-需要添加下标,使用完整类路径
+     + ![img.png](images/feign-自定义拦截器配置文件.png)
+
+----
+
+## Nacos 配置中心
+

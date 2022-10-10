@@ -21,6 +21,8 @@ public class OrderNacosApplication {
     @Bean
     @LoadBalanced   //负载均衡器 -- 不加此调用其他服务无法调用
     public RestTemplate restTemplate(RestTemplateBuilder builder){
+//        builder.setReadTimeout() 读取时间
+//        builder.setConnectTimeout() 连接时间
         RestTemplate restTemplate = builder.build();
         return restTemplate;
     }
